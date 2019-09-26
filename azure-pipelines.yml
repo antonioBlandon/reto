@@ -7,13 +7,16 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest' # other options: 'macOS-10.13', 'vs2017-win2016'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradlew' 
+    tasks: 'clean test aggregate --info'
+    gradleOptions: '-Xmx1024m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
