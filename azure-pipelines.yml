@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Gradle@2
   inputs:
-    gradleWrapperFile: 'gradlew' 
+    gradleWrapperFile: '$(system.defaultWorkingDirectory)/gradlew' 
     tasks: 'clean test aggregate --info'
     gradleOptions: '-Xmx1024m'
     javaHomeOption: 'JDKVersion'
