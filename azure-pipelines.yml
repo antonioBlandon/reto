@@ -13,7 +13,7 @@ steps:
 - task: Gradle@2
   inputs:
     gradleWrapperFile: '$(system.defaultWorkingDirectory)/gradlew' 
-    tasks: 'clean test aggregate --info'
+    tasks: 'clean test --info'
     gradleOptions: '-Xmx1024m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
